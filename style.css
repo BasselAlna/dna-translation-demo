@@ -1,0 +1,106 @@
+/* Basic page layout */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #f7f9fc;
+  color: #333;
+}
+
+header {
+  background: #3f51b5; /* a formal bluish header */
+  color: #fff;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: normal;
+}
+
+.subtitle {
+  margin-top: 6px;
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+.input-section {
+  padding: 15px 20px;
+  background: #eef1f7;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#dnaInput {
+  width: 280px;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#translateBtn, #restartBtn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #3f51b5;
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+#translateBtn:hover, #restartBtn:hover {
+  background: #303f9f;
+}
+
+#resultsSection {
+  padding: 20px;
+}
+
+#resultsArea {
+  margin-top: 10px;
+  background: #fff;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.notice {
+  color: #d32f2f; /* A moderate red for emphasis */
+}
+
+.errMsg {
+  color: #d32f2f; /* Also use a red shade for errors */
+  font-weight: bold;
+}
+
+.successMsg {
+  color: #388e3c; /* Green accent for success */
+  font-weight: bold;
+}
+
+/* Progress bar styling */
+#progressContainer {
+  margin: 10px 20px;
+  height: 8px;
+  width: 200px;
+  background: #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.hidden {
+  display: none;
+}
+#progressBar {
+  height: 100%;
+  width: 0;
+  background: #3f51b5;
+  transition: width 0.05s;
+}

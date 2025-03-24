@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DNA Translation Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>DNA Translation Portal</h1>
+    <p class="subtitle">
+      Second-Strand cDNA → mRNA → Polypeptide: An Interactive Educational Tool for Visualizing the Central Dogma of Molecular Biology.
+    </p>
+  </header>
+
+  <section class="input-section">
+    <label for="dnaInput">Enter DNA Sequence:</label>
+    <input id="dnaInput" type="text" placeholder="ATGGGGGGGGGGTGA" />
+    <button id="translateBtn">Translate</button>
+    <button id="restartBtn">Restart</button>
+  </section>
+
+  <!-- Progress bar container (hidden by default) -->
+  <div id="progressContainer" class="hidden">
+    <div id="progressBar"></div>
+  </div>
+
+  <!-- A container to show the results of each translation attempt -->
+  <section id="resultsSection">
+    <h2>Translation Results</h2>
+    <div id="resultsArea">
+      <p class="placeholder">Results will appear here once you run a translation.</p>
+    </div>
+  </section>
+
+  <!-- 
+    1) We define the Module object so Emscripten picks it up.
+    2) Using NO_EXIT_RUNTIME=1 so we can re-run main() multiple times without reloading.
+  -->
+  <script>
+    var Module = {
+      noExitRuntime: true, 
+      print: (text) => {
+        const resultsDiv = document.getElementById('resultsArea');
+        resultsDiv.innerHTML += text + "<br/>";
+      },
+      printErr: (text) => {
+        const resultsDiv = document.getElementById('resultsArea');
+        resultsDiv.innerHTML += `<span class="errMsg">Error: ${text}</span><br/>`;
+      },
+      onRuntimeInitialized: () => {
+        console.log("WebAssembly module loaded. Ready to translate.");
+      }
+    };
+  </script>
+
+  <!-- Emscripten-generated files (translation.js loads .wasm) -->
+  <script src="translation.js"></script>
+  
+  <!-- Our custom UI logic -->
+  <script src="script.js"></script>
+
+</body>
+</html>
